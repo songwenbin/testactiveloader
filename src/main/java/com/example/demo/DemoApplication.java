@@ -15,9 +15,10 @@ import java.net.URLClassLoader;
 public class DemoApplication {
 
     public static void main(String[] args) throws Exception {
-        addPath("/Users/wenbinsong/self/testclassloader/temp/");
+        String customClassPath = "/Users/wenbinsong/self/testclassloader/temp/";
+        addPath(customClassPath);
         Base.open("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/test", "root", "root");
-        File f = new File("/Users/wenbinsong/self/testclassloader/temp/");
+        File f = new File(customClassPath);
         URLClassLoader loader = new URLClassLoader(new URL[]{f.toURI().toURL() });
         //Class<?> cls2 = loader.loadClass("com.example.demo.Employes");
         Class<?> cls2 = ClassLoader.getSystemClassLoader().loadClass("com.example.demo.Employes");
